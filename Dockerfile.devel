@@ -14,7 +14,8 @@ RUN apt-get -y update && \
 	xvfb \
 	xterm \
 	xz-utils \
-	bsdmainutils 
+	bsdmainutils \
+	bash-completion
 
 # Clean up stale packages
 RUN apt-get clean -y && \
