@@ -17,8 +17,10 @@ RUN apt-get -y update && \
 	xterm \
 	xz-utils \
 	bsdmainutils \
-	bash-completion\
-	udev
+	bash-completion \
+	udev \
+	curl
+
 
 # Clean up stale packages
 RUN apt-get clean -y && \
@@ -36,6 +38,9 @@ ENTRYPOINT ["/home/user/entrypoint.sh"]
 
 # Switch to 'user' context
 USER user
+
+RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" 
+
 
 # Configure environment variables
 ENV DISPLAY=:0
