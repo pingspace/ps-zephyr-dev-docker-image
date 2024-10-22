@@ -28,9 +28,10 @@ RUN apt-get clean -y && \
 	rm -rf /var/lib/apt/lists/*
 
 # Add entrypoint script
-ADD ./entrypoint.sh /home/user/entrypoint.sh
-RUN dos2unix /home/user/entrypoint.sh
-ENTRYPOINT ["/home/user/entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+RUN dos2unix /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 
 # Add bash completion script
 #ADD ./bash_completion /home/user/.bash_completion
@@ -39,7 +40,6 @@ ENTRYPOINT ["/home/user/entrypoint.sh"]
 # Switch to 'user' context
 USER user
 
-RUN bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" 
 
 
 # Configure environment variables
@@ -60,9 +60,10 @@ EXPOSE 5900
 # Adjust 'user' home directory permissions
 USER root
 RUN chown -R user:user /home/user
+RUN usermod -aG dialout user
 
 # Make 'user' default on launch
 USER user
 
 # Launch bash shell by default
-CMD ["/bin/bash"]
+#CMD ["/bin/bash"]

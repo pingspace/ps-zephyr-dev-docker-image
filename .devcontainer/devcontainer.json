@@ -6,8 +6,10 @@
   "build": {
     "dockerfile": "../Dockerfile.devel"
   },
+  "overrideCommand": false,
   "mounts": [
-    "source=${localEnv:LOCAL_WORKSPACE_PATH},target=/workdir,type=bind"
+    "source=${localEnv:LOCAL_WORKSPACE_PATH},target=/workdir,type=bind",
+    "source=${localEnv:HOME}/.container_home,target=/home/user,type=bind"
   ],
   "workspaceFolder": "/workdir",
 
