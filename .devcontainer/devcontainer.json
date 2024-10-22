@@ -1,8 +1,14 @@
 {
   "name": "PS zephyr dev container",
-  "build": { "dockerfile": "../Dockerfile.devel"},
-
-  "mounts": [ "source=${localEnv:LOCAL_WORKSPACE_PATH},target=/workdir,type=bind"],
+  "runArgs": [
+    "--privileged", "-v=/dev:/dev", "-v=/sys:/sys"
+  ],
+  "build": {
+    "dockerfile": "../Dockerfile.devel"
+  },
+  "mounts": [
+    "source=${localEnv:LOCAL_WORKSPACE_PATH},target=/workdir,type=bind"
+  ],
   "workspaceFolder": "/workdir",
 
   "containerEnv": {
