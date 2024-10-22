@@ -7,6 +7,11 @@ if [ ! -d "$HOME/.oh-my-bash" ]; then
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 fi
 
+sudo -E -- bash -c ' \
+	/opt/toolchains/zephyr-sdk-${ZSDK_VERSION}/setup.sh -c && \
+	chown -R user:user /home/user/.cmake \
+	'
+
 SNUM=$(echo $DISPLAY | sed 's/:\([0-9][0-9]*\)/\1/')
 xvfb-run -n $SNUM -s "-screen 0 1024x768x24" -f ~/.Xauthority openbox-session &
 sleep 1
