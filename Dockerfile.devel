@@ -1,7 +1,7 @@
 # Developer Image (zephyr-build)
 
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE:-zephyrprojectrtos/ci:latest}
+FROM zephyrprojectrtos/ci:v0.26-branch
 
 # Install packages
 RUN apt-get -y update && \
